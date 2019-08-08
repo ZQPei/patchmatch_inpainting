@@ -41,7 +41,7 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 
 	cv::Mat ori_image = cv::imread(input_image_path, cv::IMREAD_COLOR);
 	cv::Mat mask_image = cv::imread(input_mask_path, cv::IMREAD_GRAYSCALE);
-	cv::Mat output_image;
+	IplImage *ori_ipl_img = &ori_image;
 
 	assert(ori_image.rows == mask_image.rows && ori_image.cols == mask_image.cols);
 
@@ -77,8 +77,8 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 
 
 	Inpaint_P inp = initInpaint();
-	IplImage * output_ipl_img = inpaint(inp, &(IplImage(ori_image)), (int**)mask, 2);
-	output_image = cv::cvarrToMat(output_ipl_img);
+	IplImage * output_ipl_img = inpaint(inp, ori_ipl_img, (int**)mask, 2);
+	cv::Mat output_image = cv::cvarrToMat(output_ipl_img);
 	if (!cv::imwrite(output_image_path, output_image))
 		printf("/!\\/!\\/!\\/!\\/!\\/!\\Could not save the resultant image. Check the path of saving.../!\\/!\\/!\\/!\\/!\\/!\\\n");
 
@@ -90,8 +90,8 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 	double ssim;
 	double psnr;
 
-	psnr = PSNR(&(IplImage(ori_image)), &(IplImage(output_image)));
-	ssim = SSIM(&(IplImage(ori_image)), &(IplImage(output_image)));
+	psnr = PSNR(ori_ipl_img, output_ipl_img);
+	ssim = SSIM(ori_ipl_img, output_ipl_img);
 
 	*psnr_total += psnr;
 	*ssim_total += ssim;
