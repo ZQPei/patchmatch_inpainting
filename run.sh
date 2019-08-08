@@ -7,4 +7,4 @@ cmake ..
 make -j8
 cd ..
 
-./main
+./build/main
