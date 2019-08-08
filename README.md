@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This repository borrow most of the code from [younesse-cv](https://github.com/younesse-cv/PatchMatch).  However that repository is C style, which cannot be compiled using `opencv 3.x`.  What I did is wrapping the code using `opencv 3.x` API in C++ style.
+This repository borrows most of the code from [younesse-cv](https://github.com/younesse-cv/PatchMatch).  However that repository is C style, which cannot be compiled using `opencv 3.x`.  What I did is wrapping the code using `opencv 3.x` API in C++ style.
 
 
 
