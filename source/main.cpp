@@ -41,8 +41,8 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 
 	cv::Mat ori_image = cv::imread(input_image_path, cv::IMREAD_COLOR);
 	cv::Mat mask_image = cv::imread(input_mask_path, cv::IMREAD_GRAYSCALE);
-	IplImage *ori_ipl_img = NULL;
-	ori_ipl_img = &IplImage(ori_image);
+	IplImage ori_ipl_img_data = IplImage(ori_image);
+	IplImage *ori_ipl_img = &ori_ipl_img_data;
 
 	assert(ori_image.rows == mask_image.rows && ori_image.cols == mask_image.cols);
 
