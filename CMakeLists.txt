@@ -6,13 +6,13 @@ set(CMAKE_C_COMPILER "/usr/bin/gcc")
 SET(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-std=c99")
 SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++0x")
 
-FIND_PACKAGE(OpenCV 2 REQUIRED)
+FIND_PACKAGE(OpenCV 3 REQUIRED)
 
 
 # include and libs path
 SET(HOME /home/pzq)
-SET(OpenCV_INCLUDE_DIRS ${OpenCV_INCLUDE_DIRS} /home/pzq/local/opencv2413/include)
-SET(OpenCV_LIBRARY_DIRS ${OpenCV_LIBRARY_DIRS} /home/pzq/local/opencv2413/lib)
+SET(OpenCV_INCLUDE_DIRS ${OpenCV_INCLUDE_DIRS} /home/pzq/local/include)
+SET(OpenCV_LIBRARY_DIRS ${OpenCV_LIBRARY_DIRS} /home/pzq/local/lib)
 
 SET(INCLUDE_PATH ./include /usr/include /usr/local/include  
                 ${OpenCV_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS}/opencv)
