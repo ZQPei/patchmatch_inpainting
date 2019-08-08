@@ -16,7 +16,7 @@ What I did is wrapping the same code using opencv 3.x API in C++ style.
 
 ![](./image_files/inpainting/output/output_00001.png)
 
-![](./image_files/inpainting/image/image512_00001.png)
+![](./image_files/inpainting/image/image_00001.png)
 
 
 ## References

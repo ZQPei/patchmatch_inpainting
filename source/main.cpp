@@ -145,7 +145,7 @@ int main(int argc, char** argv) {
 	double ssim_total = 0.0;
 	double time_total = 0.0;
 	for (int j = 0; j<3; ++j) {
-		sprintf(image_path, "./image_files/inpainting/image/image512_%05d.png", j);
+		sprintf(image_path, "./image_files/inpainting/image/image_%05d.png", j);
 		sprintf(mask_path, "./image_files/inpainting/mask/mask_%05d.png", j);
 		sprintf(masked_path, "./image_files/inpainting/masked_image_reverse/masked_image_%05d.png", j);
 		sprintf(output_path, "./image_files/inpainting/output/output_%05d.png", j);

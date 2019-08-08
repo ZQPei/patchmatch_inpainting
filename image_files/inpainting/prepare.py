@@ -21,15 +21,15 @@ for idx in range(3):
     mask_path = mask_filst[idx]
 
     image = Image.open(image_path)
-    image = image.resize((512,512))
+    image = image.resize((256,256))
     image = image.convert("RGB")
     mask = Image.open(mask_path)
-    mask = mask.resize((512,512))
+    mask = mask.resize((256,256))
     mask = mask.convert("RGB")
     masked_image = Image.fromarray(np.maximum(np.array(image), np.array(mask)))
 
     print("\rProgress %05d/%05d"%(idx+1, len(image_filst)), end="")
-    # image.save("./image/image512_%05d.png"%idx)
-    # mask.save("./mask/mask_%05d.png"%idx)
+    image.save("./image/image_%05d.png"%idx)
+    mask.save("./mask/mask_%05d.png"%idx)
     masked_image.save("./masked_image/masked_image_%05d.png"%idx)
 
