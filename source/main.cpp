@@ -77,7 +77,7 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 
 
 	Inpaint_P inp = initInpaint();
-	IplImage * output_ipl_img = inpaint(inp, &ori_image, (int**)mask, 2);
+	IplImage * output_ipl_img = inpaint(inp, &(IplImage(ori_image)), (int**)mask, 2);
 	output_image = cv::cvarrToMat(output_ipl_img);
 	if (!cv::imwrite(output_image_path, output_image))
 		printf("/!\\/!\\/!\\/!\\/!\\/!\\Could not save the resultant image. Check the path of saving.../!\\/!\\/!\\/!\\/!\\/!\\\n");
@@ -90,8 +90,8 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 	double ssim;
 	double psnr;
 
-	psnr = PSNR(&ori_image, &output_image);
-	ssim = SSIM(&ori_image, &output_image);
+	psnr = PSNR(&(IplImage(ori_image)), &(IplImage(output_image)));
+	ssim = SSIM(&(IplImage(ori_image)), &(IplImage(output_image)));
 
 	*psnr_total += psnr;
 	*ssim_total += ssim;
