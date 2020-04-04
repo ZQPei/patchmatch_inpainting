@@ -41,6 +41,7 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 
     cv::Mat ori_image = cv::imread(input_image_path, cv::IMREAD_COLOR);
     cv::Mat mask_image = cv::imread(input_mask_path, cv::IMREAD_GRAYSCALE);
+    if ((ori_image.empty()) || (mask_image.empty())) return 1;
     IplImage ori_ipl_img_data = IplImage(ori_image);
     IplImage *ori_ipl_img = &ori_ipl_img_data;
 
