@@ -151,15 +151,7 @@ int main(int argc, char** argv)
     double ssim_total = 0.0;
     double time_total = 0.0;
 
-    char image_path[256];
-    char mask_path[256];
-    char output_path[256];
-
-    strcpy(image_path, argv[1]);
-    strcpy(mask_path, argv[2]);
-    strcpy(output_path, argv[3]);
-
-    process(image_path, mask_path, output_path, &psnr_total, &ssim_total, &time_total);
+    process(argv[1], argv[2], argv[3], &psnr_total, &ssim_total, &time_total);
 
     if (argc == 4)
     {
