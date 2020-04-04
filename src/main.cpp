@@ -41,6 +41,7 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 
     cv::Mat ori_image = cv::imread(input_image_path, cv::IMREAD_COLOR);
     cv::Mat mask_image = cv::imread(input_mask_path, cv::IMREAD_GRAYSCALE);
+    if ((ori_image.empty()) || (mask_image.empty())) return 1;
     IplImage ori_ipl_img_data = IplImage(ori_image);
     IplImage *ori_ipl_img = &ori_ipl_img_data;
 
@@ -101,12 +102,11 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
     printf("Quality mesures: \n");
 
     printf("--> PSNR=%f dB\n", psnr);
-    printf("\n");
     printf("--> SSIM= %f \n", ssim);
 #endif
     /*------------------------------------------------------------------------------------------------------------*/
-    printf("\n");
     printf("DONE\n");
+    printf("\n");
     printf("The result is saved in: %s\n", output_image_path.c_str());
     toc = clock();
     cpu_time = float((toc - tic) / CLOCKS_PER_SEC);
@@ -139,29 +139,30 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 int main(int argc, char** argv)
 {
 
-    if (argc != 6)
+    if ((argc != 4) && (argc != 6))
     {
-        printf("Usage: ./main [image_path] [mask_path] [output_path] [log_path] [misc]");
+        printf("Usage:\n");
+        printf("log mode: %s [image_path] [mask_path] [output_path] [log_path] [misc]\n", argv[0]);
+        printf("simple  : %s [image] [mask] [output]\n", argv[0]);
         exit(1);
     }
-
-    char image_path[100];
-    char mask_path[100];
-    char output_path[100];
-
-    strcpy(image_path, argv[1]);
-    strcpy(mask_path, argv[2]);
-    strcpy(output_path, argv[3]);
 
     double psnr_total = 0.0;
     double ssim_total = 0.0;
     double time_total = 0.0;
 
-    process(image_path, mask_path, output_path, &psnr_total, &ssim_total, &time_total);
+    process(argv[1], argv[2], argv[3], &psnr_total, &ssim_total, &time_total);
 
-    FILE * fp = fopen(argv[4], "a");
-    fprintf(fp, "%s\t%lf\t%lf\t%lf\n", argv[5], psnr_total, ssim_total, time_total);
-    fclose(fp);
+    if (argc == 4)
+    {
+        printf("average psnr: %lf\taverage ssim: %lf\taverage time: %lf\n", psnr_total, ssim_total, time_total);
+    }
+    else
+    {
+        FILE * fp = fopen(argv[4], "a");
+        fprintf(fp, "%s\t%lf\t%lf\t%lf\n", argv[5], psnr_total, ssim_total, time_total);
+        fclose(fp);
+    }
 
     return 0;
 }

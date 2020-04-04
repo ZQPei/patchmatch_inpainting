@@ -24,7 +24,5 @@ LINK_DIRECTORIES(${LINK_PATH})
 
 
 # get executable file
-ADD_EXECUTABLE(patchmatchs ./src/main.cpp ./src/inpaint.cpp ./src/maskedimage.cpp ./src/nearestneighborfield.cpp ./src/qualitymesures.cpp)
-TARGET_LINK_LIBRARIES(patchmatchs opencv_core opencv_imgproc opencv_highgui)
-ADD_EXECUTABLE(patchmatch ./src/main_simple.cpp ./src/inpaint.cpp ./src/maskedimage.cpp ./src/nearestneighborfield.cpp ./src/qualitymesures.cpp)
+ADD_EXECUTABLE(patchmatch ./src/main.cpp ./src/inpaint.cpp ./src/maskedimage.cpp ./src/nearestneighborfield.cpp ./src/qualitymesures.cpp)
 TARGET_LINK_LIBRARIES(patchmatch opencv_core opencv_imgproc opencv_highgui)
