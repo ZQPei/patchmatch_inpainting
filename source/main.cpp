@@ -136,28 +136,57 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 
 int main(int argc, char** argv) {
 
+	if (argc != 6){
+		printf("Usage: ./main [image_path] [mask_path] [output_path] [log_path] [misc]");
+		exit(1);
+	}
+
 	char image_path[100];
 	char mask_path[100];
-	char masked_path[100];
 	char output_path[100];
 
+	strcpy(image_path, argv[1]);
+	strcpy(mask_path, argv[2]);
+	strcpy(output_path, argv[3]);
 
 	double psnr_total = 0.0;
 	double ssim_total = 0.0;
 	double time_total = 0.0;
-	for (int j = 0; j<3; ++j) {
-		sprintf(image_path, "./image_files/inpainting/image/image_%05d.png", j);
-		sprintf(mask_path, "./image_files/inpainting/mask/mask_%05d.png", j);
-		sprintf(masked_path, "./image_files/inpainting/masked_image_reverse/masked_image_%05d.png", j);
-		sprintf(output_path, "./image_files/inpainting/output/output_%05d.png", j);
 
-		process(image_path, mask_path, output_path, &psnr_total, &ssim_total, &time_total);
-	}
-	double psnr_mean = psnr_total / 3;
-	double ssim_mean = ssim_total / 3;
-	double time_mean = time_total / 3;
-	printf("average psnr: %lf\taverage ssim: %lf\taverage time: %lf\n", psnr_mean, ssim_mean, time_mean);
+	process(image_path, mask_path, output_path, &psnr_total, &ssim_total, &time_total);
 
+	FILE * fp = fopen(argv[4], "a");
+	fprintf(fp, "%s\t%lf\t%lf\t%lf\n", argv[5], psnr_total, ssim_total, time_total);
+	fclose(fp);
 
 	return 0;
 }
+
+
+// int main(int argc, char** argv) {
+
+// 	char image_path[100];
+// 	char mask_path[100];
+// 	char masked_path[100];
+// 	char output_path[100];
+
+
+// 	double psnr_total = 0.0;
+// 	double ssim_total = 0.0;
+// 	double time_total = 0.0;
+// 	for (int j = 0; j<3; ++j) {
+// 		sprintf(image_path, "./image_files/inpainting/image/image_%05d.png", j);
+// 		sprintf(mask_path, "./image_files/inpainting/mask/mask_%05d.png", j);
+// 		sprintf(masked_path, "./image_files/inpainting/masked_image_reverse/masked_image_%05d.png", j);
+// 		sprintf(output_path, "./image_files/inpainting/output/output_%05d.png", j);
+
+// 		process(image_path, mask_path, output_path, &psnr_total, &ssim_total, &time_total);
+// 	}
+// 	double psnr_mean = psnr_total / 3;
+// 	double ssim_mean = ssim_total / 3;
+// 	double time_mean = time_total / 3;
+// 	printf("average psnr: %lf\taverage ssim: %lf\taverage time: %lf\n", psnr_mean, ssim_mean, time_mean);
+
+
+// 	return 0;
+// }
