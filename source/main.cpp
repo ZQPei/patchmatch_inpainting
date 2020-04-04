@@ -61,7 +61,7 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
 	int channels = mask_image.channels();
 	int step = mask_image.cols / sizeof(uchar);
 	int ** mask = (int **)calloc(int(height), sizeof(int*));
-	for (int i = 0; i<width; i++)
+	for (int i = 0; i < height; i++)
 		mask[i] = (int *)calloc(int(width), sizeof(int));
 
 	printf("----------------------------------------------------------------------\n");
