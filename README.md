@@ -34,7 +34,7 @@ This repository borrows most of the code from [younesse-cv](https://github.com/y
   cd ..
   ```
 
-- Run
+- Run  
   As what does in `run.sh`.
 
   ```bash
