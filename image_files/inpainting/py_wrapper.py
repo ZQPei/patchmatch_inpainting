@@ -62,7 +62,7 @@ if __name__ == "__main__":
         basename = os.path.basename(image_path)[:-4]
         output_path = os.path.join(output_root, "%s.png"%basename)
         log_path = "./metrics.log"
-        cmd = "../../build/main %s %s %s %s %05d >> %s"%(image_path, mask_path, output_path, log_path, i, time_log)
+        cmd = "../../build/patchmatch %s %s %s %s %05d >> %s"%(image_path, mask_path, output_path, log_path, i, time_log)
         #print(cmd)
 
         # import ipdb; ipdb.set_trace()

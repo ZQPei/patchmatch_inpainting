@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This repository borrows most of the code from [younesse-cv](https://github.com/younesse-cv/PatchMatch).  However that repository is C style, which cannot be compiled using `opencv 3.x`.  What I did is wrapping the code using `opencv 3.x` API in C++ style.
+This repository borrows most of the code from [younesse-cv](https://github.com/younesse-cv/PatchMatch).  However that repository is C style, which cannot be compiled using `opencv 3.x`.  What I did is wrapping the code using `opencv 3.x` API in C++ style. Thanks [zvezdochiot](https://github.com/zvezdochiot) for suggestion.
 
 
 
@@ -35,20 +35,25 @@ This repository borrows most of the code from [younesse-cv](https://github.com/y
   ```
 
 - Run
+  As what does in `run.sh`.
 
   ```bash
-  ./build/main
+  for i in 0 1 2; do
+    ./build/patchmatch image_files/inpainting/image/image_0000$i.png \
+                       image_files/inpainting/mask/mask_0000$i.png \
+                       image_files/inpainting/output/output_0000$i.png \
+                       image_files/inpainting/metrics.log \
+                       $i;
+  done
   ```
 
 
 
 ## Demo
 
-| mask                                                  | masked image                                                 |
-| ----------------------------------------------------- | ------------------------------------------------------------ |
-| ![](./image_files/inpainting/mask/mask_00001.png)     | ![](./image_files/inpainting/masked_image/masked_image_00001.png) |
-| **inpainting image using PatchMatch**                 | **origin image**                                             |
-| ![](./image_files/inpainting/output/output_00001.png) | ![](./image_files/inpainting/image/image_00001.png)          |
+| mask                                                  | masked image                                                 | inpainting image using PatchMatch                                                  | origin image                                                 |
+| ----------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- | ------------------------------------------------------------ |
+| ![](./image_files/inpainting/mask/mask_00001.png)     | ![](./image_files/inpainting/masked_image/masked_image_00001.png) | ![](./image_files/inpainting/output/output_00001.png)     | ![](./image_files/inpainting/image/image_00001.png) |
 
 
 

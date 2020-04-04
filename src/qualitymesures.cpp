@@ -9,7 +9,8 @@ double PSNR(IplImage *Original , IplImage *inpainted)
     double w= Original->width;
 
     for (int i=0 ; i<h ; i++ )
-        for ( int j=0 ; j<w; j++ ) {
+        for ( int j=0 ; j<w; j++ )
+        {
             sumR+= pow( (cvGet2D(Original,i,j).val[0] - cvGet2D(inpainted,i,j).val[0]),2 );
             sumG+= pow( (cvGet2D(Original,i,j).val[1] - cvGet2D(inpainted,i,j).val[1]),2 );
             sumB+= pow( (cvGet2D(Original,i,j).val[2] - cvGet2D(inpainted,i,j).val[2]),2 );
@@ -33,13 +34,13 @@ double SSIM(IplImage *original,IplImage *distorted)
     double SSIM;
 
     IplImage
-            *img1=NULL, *img2=NULL, *img1_img2=NULL,
-            *img1_temp=NULL, *img2_temp=NULL,
-            *img1_sq=NULL, *img2_sq=NULL,
-            *mu1=NULL, *mu2=NULL,
-            *mu1_sq=NULL, *mu2_sq=NULL, *mu1_mu2=NULL,
-            *sigma1_sq=NULL, *sigma2_sq=NULL, *sigma12=NULL,
-            *ssim_map=NULL, *temp1=NULL, *temp2=NULL, *temp3=NULL;
+    *img1=NULL, *img2=NULL, *img1_img2=NULL,
+     *img1_temp=NULL, *img2_temp=NULL,
+      *img1_sq=NULL, *img2_sq=NULL,
+       *mu1=NULL, *mu2=NULL,
+        *mu1_sq=NULL, *mu2_sq=NULL, *mu1_mu2=NULL,
+         *sigma1_sq=NULL, *sigma2_sq=NULL, *sigma12=NULL,
+          *ssim_map=NULL, *temp1=NULL, *temp2=NULL, *temp3=NULL;
 
     /***************************** INITS **********************************/
     if (original==NULL || distorted==NULL)
