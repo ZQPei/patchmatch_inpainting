@@ -39,11 +39,11 @@ This repository borrows most of the code from [younesse-cv](https://github.com/y
 
   ```bash
   for i in 0 1 2; do
-    ./build/patchmatchs image_files/inpainting/image/image_0000$i.png \
-                        image_files/inpainting/mask/mask_0000$i.png \
-                        image_files/inpainting/output/output_0000$i.png \
-                        image_files/inpainting/metrics.log \
-                        $i;
+    ./build/patchmatch image_files/inpainting/image/image_0000$i.png \
+                       image_files/inpainting/mask/mask_0000$i.png \
+                       image_files/inpainting/output/output_0000$i.png \
+                       image_files/inpainting/metrics.log \
+                       $i;
   done
   ```
 
