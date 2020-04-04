@@ -12,7 +12,7 @@ This repository borrows most of the code from [younesse-cv](https://github.com/y
 
 - cmake > 2.8
 - opencv 3.x
-- g++-5
+- g++-4.7
 
 
 
@@ -39,14 +39,20 @@ This repository borrows most of the code from [younesse-cv](https://github.com/y
 
   ```bash
   for i in 0 1 2; do
-    ./build/patchmatch image_files/inpainting/image/image_0000$i.png \
-                       image_files/inpainting/mask/mask_0000$i.png \
-                       image_files/inpainting/output/output_0000$i.png \
-                       image_files/inpainting/metrics.log \
-                       $i;
+    ./build/patchmatchs image_files/inpainting/image/image_0000$i.png \
+                        image_files/inpainting/mask/mask_0000$i.png \
+                        image_files/inpainting/output/output_0000$i.png \
+                        image_files/inpainting/metrics.log \
+                        $i;
   done
   ```
 
+  Or simple:
+  ```sh
+    ./build/patchmatch image_files/inpainting/image/image_00001.png \
+                       image_files/inpainting/mask/mask_00001.png \
+                       image_files/inpainting/output/output_00001.png
+  ```
 
 
 ## Demo
