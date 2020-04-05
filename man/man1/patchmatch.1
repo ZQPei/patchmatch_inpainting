@@ -1,0 +1,30 @@
+.TH "PatchMatch" 1 "05 Apr 2020" 0.2 " User Manual"
+
+.SH NAME
+patchmatch
+
+.SH SYNOPSIS
+\fBpatchmatch\fR \fI[image_path] [mask_path] [output_path] [log_path] [misc]\fR
+\fBpatchmatch\fR \fI[image] [mask] [output]\fR
+
+.SH DESCRIPTION
+PatchMatch for inpainting using OpenCV 3.x
+
+.SH EXAMPLE
+.TP
+log mode:
+\fIfor i in $(seq 0 2); do \fBpatchmatch\fI image_files/inpainting/image/image_0000$i.png image_files/inpainting/mask/mask_0000$i.png image_files/inpainting/output/output_0000$i.png image_files/inpainting/metrics.log $i; done\fR
+.TP
+simple:
+\fBpatchmatch\fI image_files/forest/forest.bmp image_files/forest/forest_mask.png image_files/forest/forest_inpaint.png\fR
+
+.SH COPYRIGHT
+Public Domain Mark 1.0
+ No Copyright
+
+.SH SEE ALSO
+ convert(1),
+ inpaint(1)
+
+.SH CONTACTS
+ Homepage: https://github.com/ZQPei/patchmatch_inpainting
