@@ -25,19 +25,16 @@ double min1(double a, double b)
 
 int process(const char *image_path, const char *mask_path, const char *output_path, double *psnr_total, double *ssim_total, double *time_total)
 {
-
     clock_t tic, toc;
     float cpu_time;     /* Total CPU time in minutes */
 
     // set random seed
     srand((unsigned)time(0));
 
-
     //Put your file name here
     std::string input_image_path = image_path;
     std::string input_mask_path = mask_path;
     std::string output_image_path = output_path;
-
 
     cv::Mat ori_image = cv::imread(input_image_path, cv::IMREAD_COLOR);
     cv::Mat mask_image = cv::imread(input_mask_path, cv::IMREAD_GRAYSCALE);
@@ -78,13 +75,12 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
             if (data[i*step + j*channels] == 255)
                 mask[i][j] = 1;
 
-
     Inpaint_P inp = initInpaint();
     IplImage * output_ipl_img = inpaint(inp, ori_ipl_img, (int**)mask, 2);
+    if (output_ipl_img == NULL) return 1;
     cv::Mat output_image = cv::cvarrToMat(output_ipl_img);
     if (!cv::imwrite(output_image_path, output_image))
         printf("/!\\/!\\/!\\/!\\/!\\/!\\Could not save the resultant image. Check the path of saving.../!\\/!\\/!\\/!\\/!\\/!\\\n");
-
 
     /*---------------------------------------------- Quality Mesure ----------------------------------------------*/
     // It will be useful so far to measure the quality of the recontructed areas against the original ones
@@ -125,16 +121,14 @@ int process(const char *image_path, const char *mask_path, const char *output_pa
         cv::destroyAllWindows();
     }
 
-
     //free memory
+    cvReleaseImage(& output_ipl_img);
     for (int i = 0; i < height; ++i)
         free(mask[i]);
     free(mask);
 
-
     return 0;
 }
-
 
 int main(int argc, char** argv)
 {
